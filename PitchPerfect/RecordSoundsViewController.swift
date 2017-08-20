@@ -17,27 +17,31 @@ class RecordSoundsViewController: UIViewController {
     
     var audioRecorder : AVAudioRecorder!
     
+    override func viewDidLoad() {
+        recordButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         configureUI( false )
     }
     
     private func configureUI(_ recording : Bool) {
-        labelRecording.text = recording ? "Gravando..." : "Tap to record"
+        labelRecording.text = recording ? "Recording..." : "Tap to record"
         stopRecordingButton.isEnabled = recording
         recordButton.isEnabled = !recording
     }
 
     @IBAction func recordAudio(_ sender: Any) {
-        self.avRecord()
+        startAudioRecorder()
         configureUI( true )
     }
     
     @IBAction func stopRecording(_ sender: Any) {
         configureUI( false )
-        self.avStop()
+        stopAudioRecorder()
     }
     
-    private func avRecord() {
+    private func startAudioRecorder() {
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath, recordingName]
@@ -55,7 +59,7 @@ class RecordSoundsViewController: UIViewController {
         audioRecorder.record()
     }
     
-    private func avStop() {
+    private func stopAudioRecorder() {
         audioRecorder.stop()
         let session = AVAudioSession.sharedInstance()
         try! session.setActive(false)
@@ -74,7 +78,7 @@ extension RecordSoundsViewController : AVAudioRecorderDelegate {
  
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
-            print("audioRecorderDidFinishRecording error ")
+            print("Audio recorder failed")
             return
         }
 

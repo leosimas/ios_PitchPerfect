@@ -62,11 +62,11 @@
 			children = (
 				5013B79E1F29FCC7009C2040 /* AppDelegate.swift */,
 				5013B7A01F29FCC7009C2040 /* RecordSoundsViewController.swift */,
+				A35BE6ED1F48FA550057CDE3 /* PlaySoundsViewController.swift */,
 				5013B7A21F29FCC7009C2040 /* Main.storyboard */,
 				5013B7A51F29FCC7009C2040 /* Assets.xcassets */,
 				5013B7A71F29FCC7009C2040 /* LaunchScreen.storyboard */,
 				5013B7AA1F29FCC7009C2040 /* Info.plist */,
-				A35BE6ED1F48FA550057CDE3 /* PlaySoundsViewController.swift */,
 			);
 			path = PitchPerfect;
 			sourceTree = "<group>";
