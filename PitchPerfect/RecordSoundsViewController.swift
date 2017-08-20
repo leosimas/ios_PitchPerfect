@@ -18,10 +18,9 @@ class RecordSoundsViewController: UIViewController {
     var audioRecorder : AVAudioRecorder!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         recordButton.imageView?.contentMode = .scaleAspectFit
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         configureUI( false )
     }
     
@@ -78,7 +77,9 @@ extension RecordSoundsViewController : AVAudioRecorderDelegate {
  
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
-            print("Audio recorder failed")
+            let alert = UIAlertController(title: "Audio Recorder Error", message: "Something went wrong with the audio recorder", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return
         }
 
